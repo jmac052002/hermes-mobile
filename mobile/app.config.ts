@@ -17,6 +17,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     },
     package: 'com.jmac052002.hermes',
     usesCleartextTraffic: true,
+    networkSecurityConfig: './assets/network_security_config.xml',
   },
   plugins: [
     'expo-router',
