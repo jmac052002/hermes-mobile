@@ -1,0 +1,33 @@
+// mobile/app.config.ts
+import { ExpoConfig, ConfigContext } from 'expo/config';
+
+export default ({ config }: ConfigContext): ExpoConfig => ({
+  ...config,
+  name: 'Hermes',
+  slug: 'hermes-mobile',
+  version: '1.0.0',
+  orientation: 'portrait',
+  scheme: 'hermes',
+  userInterfaceStyle: 'dark',
+  platforms: ['android'],
+  android: {
+    adaptiveIcon: {
+      foregroundImage: './assets/android-icon-foreground.png',
+      backgroundColor: '#0a0a0a',
+    },
+    package: 'com.jmac052002.hermes',
+  },
+  plugins: [
+    'expo-router',
+    'expo-secure-store',
+  ],
+  experiments: {
+    typedRoutes: true,
+  },
+  extra: {
+    hermesBaseUrl: process.env.HERMES_BASE_URL ?? 'http://100.125.69.27:9119',
+    router: {
+      origin: false,
+    },
+  },
+});
