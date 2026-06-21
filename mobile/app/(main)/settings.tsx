@@ -72,7 +72,7 @@ export default function SettingsScreen() {
         style={styles.input}
         value={urlInput}
         onChangeText={setUrlInput}
-        placeholder="http://100.125.69.27:9119"
+        placeholder="https://dashboard.josephsdctlabtraining.com"
         placeholderTextColor={COLORS.muted}
         autoCapitalize="none"
         autoCorrect={false}

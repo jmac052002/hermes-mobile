@@ -6,7 +6,7 @@ import { COLORS } from '../src/constants';
 
 export default function ConnectScreen() {
   const { connect, error, isConnecting } = useConnection();
-  const [baseUrl, setBaseUrl] = useState('http://100.125.69.27:9119');
+  const [baseUrl, setBaseUrl] = useState('https://dashboard.josephsdctlabtraining.com');
   const [token, setToken] = useState('');
   const router = useRouter();
 

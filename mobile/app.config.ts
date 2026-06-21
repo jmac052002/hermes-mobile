@@ -27,7 +27,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     typedRoutes: true,
   },
   extra: {
-    hermesBaseUrl: process.env.HERMES_BASE_URL ?? 'http://100.125.69.27:9119',
+    hermesBaseUrl: process.env.HERMES_BASE_URL ?? 'https://dashboard.josephsdctlabtraining.com',
     router: {
       origin: false,
     },
