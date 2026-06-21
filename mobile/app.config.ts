@@ -29,5 +29,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     router: {
       origin: false,
     },
+    eas: {
+      projectId: 'ac4483aa-b893-4cf0-9846-56aa246a347f',
+    },
   },
 });
