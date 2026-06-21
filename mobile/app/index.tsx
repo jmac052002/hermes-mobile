@@ -6,6 +6,7 @@ import { COLORS } from '../src/constants';
 export default function Index() {
   const { isConnecting, isConnected } = useConnection();
 
+  // Only show spinner when actively attempting connection
   if (isConnecting) {
     return (
       <View style={{ flex: 1, backgroundColor: COLORS.background, alignItems: 'center', justifyContent: 'center' }}>

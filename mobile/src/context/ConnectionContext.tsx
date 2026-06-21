@@ -22,7 +22,7 @@ export function ConnectionProvider({ children }: { children: ReactNode }) {
   const [token, setToken] = useState<string | null>(null);
   const [status, setStatus] = useState<StatusResponse | null>(null);
   const [isConnected, setIsConnected] = useState(false);
-  const [isConnecting, setIsConnecting] = useState(true);
+  const [isConnecting, setIsConnecting] = useState(false); // start false — don't block UI on mount
   const [error, setError] = useState<string | null>(null);
 
   const fetchStatus = useCallback(async (): Promise<StatusResponse | null> => {
@@ -59,7 +59,7 @@ export function ConnectionProvider({ children }: { children: ReactNode }) {
         setIsConnected(true);
         return true;
       } else {
-        setError('Cannot reach Hermes. Check base URL and Tailscale connection.');
+        setError('Cannot reach Hermes. Check base URL and that Tailscale is connected.');
         setIsConnected(false);
         return false;
       }
@@ -88,14 +88,19 @@ export function ConnectionProvider({ children }: { children: ReactNode }) {
     setStatus(null);
   }, []);
 
-  // Restore on mount
+  // Restore stored URL/token on mount — attempt silent reconnect only if we have a stored URL
   useEffect(() => {
     (async () => {
       const storedUrl = await tokenStorage.getBaseUrl();
       const storedToken = await tokenStorage.getToken();
       setBaseUrl(storedUrl);
       setToken(storedToken);
-      await connect(storedUrl, storedToken ?? undefined);
+      // Only silently reconnect if a URL was previously stored (not the default)
+      const hasStoredUrl = await tokenStorage.getBaseUrl();
+      if (hasStoredUrl) {
+        // Don't block the UI — silent background attempt
+        connect(storedUrl, storedToken ?? undefined).catch(() => {});
+      }
     })();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 

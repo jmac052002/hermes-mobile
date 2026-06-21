@@ -11,7 +11,7 @@ export async function getApiClient(): Promise<AxiosInstance> {
     _currentBaseUrl = baseUrl;
     _client = axios.create({
       baseURL: baseUrl,
-      timeout: 15000,
+      timeout: 30000,
       headers: { 'Content-Type': 'application/json' },
     });
 
