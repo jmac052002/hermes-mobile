@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
-import { DrawerContentScrollView } from '@react-navigation/drawer';
+import { DrawerContentScrollView } from 'expo-router/drawer';
 import { useRouter, usePathname } from 'expo-router';
 import { COLORS } from '../constants';
 import { useConnection } from '../context/ConnectionContext';
